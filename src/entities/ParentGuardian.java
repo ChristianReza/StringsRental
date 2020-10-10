@@ -1,27 +1,52 @@
 package entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "PARNT_GUARD")
 public class ParentGuardian extends Person {
 	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID") // specify the column name. Without it, it will use method name
+	private Integer id;
 
+	@Column(name = "CC")
 	private String cc;
 	
+	@Column(name = "PHONE_NUM")
 	private String phoneNumber;
 	
+	@Column(name = "ADDRESS")
 	private String address;
 	
+	@Column(name = "EMAIL")
 	private String email;
 	
 	public ParentGuardian(String firstName, String lastName) {
 		super(firstName, lastName);
 	}
 
-	public ParentGuardian(String firstName, String lastName, String cc, String phoneNumber, String address,
+	public ParentGuardian(Integer id, String firstName, String lastName, String cc, String phoneNumber, String address,
 			String email) {
 		super(firstName, lastName);
+		this.id = id;
 		this.cc = cc;
 		this.phoneNumber = phoneNumber;
 		this.address = address;
 		this.email = email;
+	}
+	
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getCc() {
@@ -63,6 +88,7 @@ public class ParentGuardian extends Person {
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((cc == null) ? 0 : cc.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 		return result;
 	}
@@ -91,6 +117,11 @@ public class ParentGuardian extends Person {
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
 		if (phoneNumber == null) {
 			if (other.phoneNumber != null)
 				return false;
@@ -98,7 +129,5 @@ public class ParentGuardian extends Person {
 			return false;
 		return true;
 	}
-	
-	
 	
 }

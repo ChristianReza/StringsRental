@@ -1,24 +1,55 @@
 package entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
+
 import enums.InstrumentType;
 import enums.Size;
 
+@Entity
+@Table(name = "INSTMNT")
 public class Instrument {
 	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID") // specify the column name. Without it, it will use method name
+	private Integer id;
+	
+	@Column(name = "SERIAL_NUM")
 	private String serialNumber;
 	
+	// https://www.baeldung.com/jpa-persisting-enums-in-jpa
+    @Enumerated(EnumType.ORDINAL)
+	@Column(name = "INST_TYPE")
 	private InstrumentType instrumentType;
 	
+    @Enumerated(EnumType.ORDINAL)
+	@Column(name = "SIZE")
 	private Size size;
 	
+	@Column(name = "STDNT_NAME")
 	private Student student;
 
-	public Instrument(String serialNumber, InstrumentType instrumentType, Size size, Student student) {
+	public Instrument(Integer id, String serialNumber, InstrumentType instrumentType, Size size, Student student) {
 		super();
+		this.id = id;
 		this.serialNumber = serialNumber;
 		this.instrumentType = instrumentType;
 		this.size = size;
 		this.student = student;
+	}
+	
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getSerialNumber() {
@@ -57,6 +88,7 @@ public class Instrument {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((instrumentType == null) ? 0 : instrumentType.hashCode());
 		result = prime * result + ((serialNumber == null) ? 0 : serialNumber.hashCode());
 		result = prime * result + ((size == null) ? 0 : size.hashCode());
@@ -73,6 +105,11 @@ public class Instrument {
 		if (getClass() != obj.getClass())
 			return false;
 		Instrument other = (Instrument) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
 		if (instrumentType != other.instrumentType)
 			return false;
 		if (serialNumber == null) {
@@ -89,7 +126,5 @@ public class Instrument {
 			return false;
 		return true;
 	}
-	
-	
 
 }

@@ -73,4 +73,5 @@ local.properties
 *.class
 *.classpath/
 *.project/
-*/hibernate.cfg.xml
+build/
+/src/hibernate.cfg.xml
