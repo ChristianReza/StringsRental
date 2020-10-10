@@ -1,4 +1,4 @@
-package enums;
+package datamodels.enums;
 
 public enum InstrumentType {
 	

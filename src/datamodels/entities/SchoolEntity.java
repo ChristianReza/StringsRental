@@ -1,4 +1,4 @@
-package entities;
+package datamodels.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,15 +7,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PARNT_GUARD")
-public class ParentGuardian extends Person {
+@Table(name = "SCHOOL")
+public class SchoolEntity {
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID") // specify the column name. Without it, it will use method name
 	private Integer id;
-
-	@Column(name = "CC")
-	private String cc;
+	
+	@Column(name = "SCHL_NAME")
+	private String name;
 	
 	@Column(name = "PHONE_NUM")
 	private String phoneNumber;
@@ -23,38 +23,28 @@ public class ParentGuardian extends Person {
 	@Column(name = "ADDRESS")
 	private String address;
 	
-	@Column(name = "EMAIL")
-	private String email;
-	
-	public ParentGuardian(String firstName, String lastName) {
-		super(firstName, lastName);
-	}
-
-	public ParentGuardian(Integer id, String firstName, String lastName, String cc, String phoneNumber, String address,
-			String email) {
-		super(firstName, lastName);
+	public SchoolEntity(Integer id, String name, String phoneNumber, String address) {
+		super();
 		this.id = id;
-		this.cc = cc;
+		this.name = name;
 		this.phoneNumber = phoneNumber;
 		this.address = address;
-		this.email = email;
 	}
-	
 	
 	public Integer getId() {
 		return id;
 	}
-
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public String getCc() {
-		return cc;
+	public String getname() {
+		return name;
 	}
 
-	public void setCc(String cc) {
-		this.cc = cc;
+	public void setname(String name) {
+		this.name = name;
 	}
 
 	public String getPhoneNumber() {
@@ -73,22 +63,13 @@ public class ParentGuardian extends Person {
 		this.address = address;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = super.hashCode();
+		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + ((cc == null) ? 0 : cc.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 		return result;
 	}
@@ -97,30 +78,25 @@ public class ParentGuardian extends Person {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ParentGuardian other = (ParentGuardian) obj;
+		SchoolEntity other = (SchoolEntity) obj;
 		if (address == null) {
 			if (other.address != null)
 				return false;
 		} else if (!address.equals(other.address))
 			return false;
-		if (cc == null) {
-			if (other.cc != null)
-				return false;
-		} else if (!cc.equals(other.cc))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
 			return false;
 		if (phoneNumber == null) {
 			if (other.phoneNumber != null)
@@ -129,5 +105,5 @@ public class ParentGuardian extends Person {
 			return false;
 		return true;
 	}
-	
+
 }

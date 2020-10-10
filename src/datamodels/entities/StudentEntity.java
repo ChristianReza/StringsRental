@@ -1,4 +1,4 @@
-package entities;
+package datamodels.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,32 +6,34 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
+import datamodels.general.Person;
+
 @Entity
 @Table(name = "STUDENT")
-public class Student extends Person {
+public class StudentEntity extends Person {
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID") // specify the column name. Without it, it will use method name
 	private Integer id;
 	
 	@Column(name = "SCHL_DIST")
-	private School schoolDistrict;
+	private SchoolEntity schoolDistrict;
 	
 	@Column(name = "INST")
-	private Instrument instrument;
+	private InstrumentEntity instrument;
 	
 	@Column(name = "PARENT_GUARD")
-	private ParentGuardian parentGuardian;
+	private ParentGuardianEntity parentGuardian;
 	
 	@Column(name = "GRADE_LVL")
 	private int gradeLevel;
 
-	public Student(String firstName, String lastName) {
+	public StudentEntity(String firstName, String lastName) {
 		super(firstName, lastName);
 	}
 
-	public Student(String firstName, String lastName, Integer id, School schoolDistrict, Instrument instrument,
-			ParentGuardian parentGuardian, int gradeLevel) {
+	public StudentEntity(String firstName, String lastName, Integer id, SchoolEntity schoolDistrict, InstrumentEntity instrument,
+			ParentGuardianEntity parentGuardian, int gradeLevel) {
 		super(firstName, lastName);
 		this.id = id;
 		this.schoolDistrict = schoolDistrict;
@@ -48,27 +50,27 @@ public class Student extends Person {
 		this.id = id;
 	}
 
-	public School getSchoolDistrict() {
+	public SchoolEntity getSchoolDistrict() {
 		return schoolDistrict;
 	}
 
-	public void setSchoolDistrict(School schoolDistrict) {
+	public void setSchoolDistrict(SchoolEntity schoolDistrict) {
 		this.schoolDistrict = schoolDistrict;
 	}
 
-	public Instrument getInstrument() {
+	public InstrumentEntity getInstrument() {
 		return instrument;
 	}
 
-	public void setInstrument(Instrument instrument) {
+	public void setInstrument(InstrumentEntity instrument) {
 		this.instrument = instrument;
 	}
 
-	public ParentGuardian getParentGuardian() {
+	public ParentGuardianEntity getParentGuardian() {
 		return parentGuardian;
 	}
 
-	public void setParentGuardian(ParentGuardian parentGuardian) {
+	public void setParentGuardian(ParentGuardianEntity parentGuardian) {
 		this.parentGuardian = parentGuardian;
 	}
 
@@ -100,7 +102,7 @@ public class Student extends Person {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Student other = (Student) obj;
+		StudentEntity other = (StudentEntity) obj;
 		if (gradeLevel != other.gradeLevel)
 			return false;
 		if (id == null) {

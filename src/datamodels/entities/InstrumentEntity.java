@@ -1,4 +1,4 @@
-package entities;
+package datamodels.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,12 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
-import enums.InstrumentType;
-import enums.Size;
+import datamodels.enums.InstrumentType;
+import datamodels.enums.Size;
+import datamodels.entities.StudentEntity;
 
 @Entity
 @Table(name = "INSTMNT")
-public class Instrument {
+public class InstrumentEntity {
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID") // specify the column name. Without it, it will use method name
@@ -32,9 +33,9 @@ public class Instrument {
 	private Size size;
 	
 	@Column(name = "STDNT_NAME")
-	private Student student;
+	private StudentEntity student;
 
-	public Instrument(Integer id, String serialNumber, InstrumentType instrumentType, Size size, Student student) {
+	public InstrumentEntity(Integer id, String serialNumber, InstrumentType instrumentType, Size size, StudentEntity student) {
 		super();
 		this.id = id;
 		this.serialNumber = serialNumber;
@@ -76,11 +77,11 @@ public class Instrument {
 		this.size = size;
 	}
 
-	public Student getStudent() {
+	public StudentEntity getStudent() {
 		return student;
 	}
 
-	public void setStudent(Student student) {
+	public void setStudent(StudentEntity student) {
 		this.student = student;
 	}
 
@@ -104,7 +105,7 @@ public class Instrument {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Instrument other = (Instrument) obj;
+		InstrumentEntity other = (InstrumentEntity) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
