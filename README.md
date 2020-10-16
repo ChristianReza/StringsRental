@@ -2,6 +2,7 @@
 
 ### Page Links
 http://ec2-18-222-43-76.us-east-2.compute.amazonaws.com:8080/StringsRental/createRentalSuitHB.html
+
 http://ec2-18-222-43-76.us-east-2.compute.amazonaws.com:8080/StringsRental/searchRentalSuitHB.html
 
 ### helpful links
