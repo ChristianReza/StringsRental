@@ -16,28 +16,29 @@ import datamodels.enums.Size;
 @Entity
 @Table(name = "INSTMNT")
 public class InstrumentEntity {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID") // specify the column name. Without it, it will use method name
 	private Integer id;
-	
+
 	@Column(name = "SERIAL_NUM")
 	private String serialNumber;
-	
+
 	// https://www.baeldung.com/jpa-persisting-enums-in-jpa
-    @Enumerated(EnumType.ORDINAL)
+	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "INST_TYPE")
 	private InstrumentType instrumentType;
-	
-    @Enumerated(EnumType.ORDINAL)
+
+	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "SIZE")
 	private Size size;
-	
+
 	@Column(name = "STUDENT")
 	private StudentEntity student;
 
-	public InstrumentEntity(Integer id, String serialNumber, InstrumentType instrumentType, Size size, StudentEntity student) {
+	public InstrumentEntity(Integer id, String serialNumber, InstrumentType instrumentType, Size size,
+			StudentEntity student) {
 		super();
 		this.id = id;
 		this.serialNumber = serialNumber;
@@ -45,7 +46,7 @@ public class InstrumentEntity {
 		this.size = size;
 		this.student = student;
 	}
-	
+
 	public InstrumentEntity(String serialNumber, InstrumentType instrumentType, Size size, StudentEntity student) {
 		super();
 		this.serialNumber = serialNumber;
@@ -53,7 +54,6 @@ public class InstrumentEntity {
 		this.size = size;
 		this.student = student;
 	}
-	
 
 	public InstrumentEntity(InstrumentDTO instrument) {
 		super();
@@ -101,6 +101,12 @@ public class InstrumentEntity {
 
 	public void setStudent(StudentEntity student) {
 		this.student = student;
+	}
+
+	@Override
+	public String toString() {
+		return "InstrumentEntity [id=" + id + ", serialNumber=" + serialNumber + ", instrumentType=" + instrumentType
+				+ ", size=" + size + ", student=" + student.getFirstName() + " " + student.getLastName() + "]";
 	}
 
 	@Override

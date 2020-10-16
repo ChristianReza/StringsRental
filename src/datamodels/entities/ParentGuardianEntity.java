@@ -103,6 +103,12 @@ public class ParentGuardianEntity extends Person {
 	}
 
 	@Override
+	public String toString() {
+		return "ParentGuardianEntity [id=" + id + ", cc=" + cc + ", phoneNumber=" + phoneNumber + ", address=" + address
+				+ ", email=" + email + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();

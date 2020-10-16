@@ -102,6 +102,12 @@ public class StudentEntity extends Person {
 	public void setGradeLevel(int gradeLevel) {
 		this.gradeLevel = gradeLevel;
 	}
+	
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", schoolDistrict=" + schoolDistrict.toString() + ", instrument=" + instrument.getSerialNumber()
+				+ ", parentGuardian=" + parentGuardian.toString() + ", gradeLevel=" + gradeLevel + "]";
+	}
 
 	@Override
 	public int hashCode() {

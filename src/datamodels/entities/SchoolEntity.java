@@ -12,21 +12,21 @@ import datamodels.dto.SchoolDTO;
 @Entity
 @Table(name = "SCHOOL")
 public class SchoolEntity {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID") // specify the column name. Without it, it will use method name
 	private Integer id;
-	
+
 	@Column(name = "SCHL_NAME")
 	private String name;
-	
+
 	@Column(name = "PHONE_NUM")
 	private String phoneNumber;
-	
+
 	@Column(name = "ADDRESS")
 	private String address;
-	
+
 	public SchoolEntity(Integer id, String name, String phoneNumber, String address) {
 		super();
 		this.id = id;
@@ -34,14 +34,14 @@ public class SchoolEntity {
 		this.phoneNumber = phoneNumber;
 		this.address = address;
 	}
-	
+
 	public SchoolEntity(String name, String phoneNumber, String address) {
 		super();
 		this.name = name;
 		this.phoneNumber = phoneNumber;
 		this.address = address;
 	}
-	
+
 	public SchoolEntity(SchoolDTO schoolDistrict) {
 		super();
 		this.name = schoolDistrict.getname();
@@ -52,7 +52,7 @@ public class SchoolEntity {
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -79,6 +79,12 @@ public class SchoolEntity {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	@Override
+	public String toString() {
+		return "School [id=" + id + ", name=" + name + ", phoneNumber=" + phoneNumber + ", address=" + address
+				+ "]";
 	}
 
 	@Override
