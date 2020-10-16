@@ -6,34 +6,35 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
+import datamodels.dto.ParentGuardianDTO;
 import datamodels.general.Person;
 
 @Entity
 @Table(name = "PARNT_GUARD")
 public class ParentGuardianEntity extends Person {
-	
+
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID") // specify the column name. Without it, it will use method name
 	private Integer id;
 
 	@Column(name = "CC")
 	private String cc;
-	
+
 	@Column(name = "PHONE_NUM")
 	private String phoneNumber;
-	
+
 	@Column(name = "ADDRESS")
 	private String address;
-	
+
 	@Column(name = "EMAIL")
 	private String email;
-	
+
 	public ParentGuardianEntity(String firstName, String lastName) {
 		super(firstName, lastName);
 	}
 
-	public ParentGuardianEntity(Integer id, String firstName, String lastName, String cc, String phoneNumber, String address,
-			String email) {
+	public ParentGuardianEntity(Integer id, String firstName, String lastName, String cc, String phoneNumber,
+			String address, String email) {
 		super(firstName, lastName);
 		this.id = id;
 		this.cc = cc;
@@ -41,8 +42,24 @@ public class ParentGuardianEntity extends Person {
 		this.address = address;
 		this.email = email;
 	}
-	
-	
+
+	public ParentGuardianEntity(String firstName, String lastName, String cc, String phoneNumber, String address,
+			String email) {
+		super(firstName, lastName);
+		this.cc = cc;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
+		this.email = email;
+	}
+
+	public ParentGuardianEntity(ParentGuardianDTO parentGuardian) {
+		super(parentGuardian.getFirstName(), parentGuardian.getLastName());
+		this.cc = parentGuardian.getCc();
+		this.phoneNumber = parentGuardian.getPhoneNumber();
+		this.address = parentGuardian.getAddress();
+		this.email = parentGuardian.getEmail();
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -131,5 +148,5 @@ public class ParentGuardianEntity extends Person {
 			return false;
 		return true;
 	}
-	
+
 }

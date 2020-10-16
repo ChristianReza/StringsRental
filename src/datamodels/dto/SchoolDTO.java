@@ -1,31 +1,16 @@
-package datamodels.entities;
+package datamodels.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
-
-import datamodels.dto.SchoolDTO;
-
-@Entity
-@Table(name = "SCHOOL")
-public class SchoolEntity {
+public class SchoolDTO {
 	
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID") // specify the column name. Without it, it will use method name
 	private Integer id;
 	
-	@Column(name = "SCHL_NAME")
 	private String name;
 	
-	@Column(name = "PHONE_NUM")
 	private String phoneNumber;
 	
-	@Column(name = "ADDRESS")
 	private String address;
 	
-	public SchoolEntity(Integer id, String name, String phoneNumber, String address) {
+	public SchoolDTO(Integer id, String name, String phoneNumber, String address) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -33,20 +18,13 @@ public class SchoolEntity {
 		this.address = address;
 	}
 	
-	public SchoolEntity(String name, String phoneNumber, String address) {
+	public SchoolDTO(String name, String phoneNumber, String address) {
 		super();
 		this.name = name;
 		this.phoneNumber = phoneNumber;
 		this.address = address;
 	}
 	
-	public SchoolEntity(SchoolDTO schoolDistrict) {
-		super();
-		this.name = schoolDistrict.getname();
-		this.phoneNumber = schoolDistrict.getPhoneNumber();
-		this.address = schoolDistrict.getAddress();
-	}
-
 	public Integer getId() {
 		return id;
 	}
@@ -98,7 +76,7 @@ public class SchoolEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SchoolEntity other = (SchoolEntity) obj;
+		SchoolDTO other = (SchoolDTO) obj;
 		if (address == null) {
 			if (other.address != null)
 				return false;

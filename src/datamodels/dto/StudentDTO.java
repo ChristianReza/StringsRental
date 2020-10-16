@@ -1,40 +1,25 @@
-package datamodels.entities;
+package datamodels.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
-
-import datamodels.dto.StudentDTO;
 import datamodels.general.Person;
 
-@Entity
-@Table(name = "STUDENT")
-public class StudentEntity extends Person {
-
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID") // specify the column name. Without it, it will use method name
+public class StudentDTO extends Person {
+	
 	private Integer id;
-
-	@Column(name = "SCHL_DIST")
-	private SchoolEntity schoolDistrict;
-
-	@Column(name = "INST")
-	private InstrumentEntity instrument;
-
-	@Column(name = "PARENT_GUARD")
-	private ParentGuardianEntity parentGuardian;
-
-	@Column(name = "GRADE_LVL")
+	
+	private SchoolDTO schoolDistrict;
+	
+	private InstrumentDTO instrument;
+	
+	private ParentGuardianDTO parentGuardian;
+	
 	private int gradeLevel;
 
-	public StudentEntity(String firstName, String lastName) {
+	public StudentDTO(String firstName, String lastName) {
 		super(firstName, lastName);
 	}
 
-	public StudentEntity(String firstName, String lastName, Integer id, SchoolEntity schoolDistrict,
-			InstrumentEntity instrument, ParentGuardianEntity parentGuardian, int gradeLevel) {
+	public StudentDTO(String firstName, String lastName, Integer id, SchoolDTO schoolDistrict, InstrumentDTO instrument,
+			ParentGuardianDTO parentGuardian, int gradeLevel) {
 		super(firstName, lastName);
 		this.id = id;
 		this.schoolDistrict = schoolDistrict;
@@ -42,9 +27,9 @@ public class StudentEntity extends Person {
 		this.parentGuardian = parentGuardian;
 		this.gradeLevel = gradeLevel;
 	}
-
-	public StudentEntity(String firstName, String lastName, SchoolEntity schoolDistrict, InstrumentEntity instrument,
-			ParentGuardianEntity parentGuardian, int gradeLevel) {
+	
+	public StudentDTO(String firstName, String lastName, SchoolDTO schoolDistrict, InstrumentDTO instrument,
+			ParentGuardianDTO parentGuardian, int gradeLevel) {
 		super(firstName, lastName);
 		this.schoolDistrict = schoolDistrict;
 		this.instrument = instrument;
@@ -52,14 +37,6 @@ public class StudentEntity extends Person {
 		this.gradeLevel = gradeLevel;
 	}
 
-	public StudentEntity(StudentDTO studentDTO) {
-		super(studentDTO.getFirstName(),
-				studentDTO.getLastName());
-		this.schoolDistrict = new SchoolEntity(studentDTO.getSchoolDistrict());
-		this.instrument = new InstrumentEntity(studentDTO.getInstrument());
-		this.parentGuardian = new ParentGuardianEntity(studentDTO.getParentGuardian());
-		this.gradeLevel = studentDTO.getGradeLevel();
-	}
 
 	public Integer getId() {
 		return id;
@@ -69,27 +46,27 @@ public class StudentEntity extends Person {
 		this.id = id;
 	}
 
-	public SchoolEntity getSchoolDistrict() {
+	public SchoolDTO getSchoolDistrict() {
 		return schoolDistrict;
 	}
 
-	public void setSchoolDistrict(SchoolEntity schoolDistrict) {
+	public void setSchoolDistrict(SchoolDTO schoolDistrict) {
 		this.schoolDistrict = schoolDistrict;
 	}
 
-	public InstrumentEntity getInstrument() {
+	public InstrumentDTO getInstrument() {
 		return instrument;
 	}
 
-	public void setInstrument(InstrumentEntity instrument) {
+	public void setInstrument(InstrumentDTO instrument) {
 		this.instrument = instrument;
 	}
 
-	public ParentGuardianEntity getParentGuardian() {
+	public ParentGuardianDTO getParentGuardian() {
 		return parentGuardian;
 	}
 
-	public void setParentGuardian(ParentGuardianEntity parentGuardian) {
+	public void setParentGuardian(ParentGuardianDTO parentGuardian) {
 		this.parentGuardian = parentGuardian;
 	}
 
@@ -121,7 +98,7 @@ public class StudentEntity extends Person {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		StudentEntity other = (StudentEntity) obj;
+		StudentDTO other = (StudentDTO) obj;
 		if (gradeLevel != other.gradeLevel)
 			return false;
 		if (id == null) {

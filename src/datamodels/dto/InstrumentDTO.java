@@ -1,42 +1,21 @@
-package datamodels.entities;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
+package datamodels.dto;
 
 import datamodels.enums.InstrumentType;
 import datamodels.enums.Size;
-import datamodels.dto.InstrumentDTO;
-import datamodels.entities.StudentEntity;
 
-@Entity
-@Table(name = "INSTMNT")
-public class InstrumentEntity {
+public class InstrumentDTO {
 	
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID") // specify the column name. Without it, it will use method name
 	private Integer id;
 	
-	@Column(name = "SERIAL_NUM")
 	private String serialNumber;
 	
-	// https://www.baeldung.com/jpa-persisting-enums-in-jpa
-    @Enumerated(EnumType.ORDINAL)
-	@Column(name = "INST_TYPE")
 	private InstrumentType instrumentType;
 	
-    @Enumerated(EnumType.ORDINAL)
-	@Column(name = "SIZE")
 	private Size size;
 	
-	@Column(name = "STDNT_NAME")
-	private StudentEntity student;
+	private StudentDTO student;
 
-	public InstrumentEntity(Integer id, String serialNumber, InstrumentType instrumentType, Size size, StudentEntity student) {
+	public InstrumentDTO(Integer id, String serialNumber, InstrumentType instrumentType, Size size, StudentDTO student) {
 		super();
 		this.id = id;
 		this.serialNumber = serialNumber;
@@ -45,7 +24,7 @@ public class InstrumentEntity {
 		this.student = student;
 	}
 	
-	public InstrumentEntity(String serialNumber, InstrumentType instrumentType, Size size, StudentEntity student) {
+	public InstrumentDTO(String serialNumber, InstrumentType instrumentType, Size size, StudentDTO student) {
 		super();
 		this.serialNumber = serialNumber;
 		this.instrumentType = instrumentType;
@@ -54,12 +33,8 @@ public class InstrumentEntity {
 	}
 	
 
-	public InstrumentEntity(InstrumentDTO instrument) {
-		super();
-		this.serialNumber = instrument.getSerialNumber();
-		this.instrumentType = instrument.getInstrumentType();
-		this.size = instrument.getSize();
-		this.student = new StudentEntity(instrument.getStudent());
+	public InstrumentDTO() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Integer getId() {
@@ -94,11 +69,11 @@ public class InstrumentEntity {
 		this.size = size;
 	}
 
-	public StudentEntity getStudent() {
+	public StudentDTO getStudent() {
 		return student;
 	}
 
-	public void setStudent(StudentEntity student) {
+	public void setStudent(StudentDTO student) {
 		this.student = student;
 	}
 
@@ -122,7 +97,7 @@ public class InstrumentEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		InstrumentEntity other = (InstrumentEntity) obj;
+		InstrumentDTO other = (InstrumentDTO) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
