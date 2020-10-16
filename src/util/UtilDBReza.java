@@ -64,7 +64,7 @@ public class UtilDBReza {
 		return resultList;
 	}
 
-	public static List<StudentEntity> listEmployees(String keyword) {
+	public static List<StudentEntity> listStudents(String keyword) {
 		List<StudentEntity> resultList = new ArrayList<StudentEntity>();
 
 		Session session = getSessionFactory().openSession();

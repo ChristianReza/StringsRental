@@ -6,17 +6,18 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
+import datamodels.dto.InstrumentDTO;
 import datamodels.enums.InstrumentType;
 import datamodels.enums.Size;
-import datamodels.dto.InstrumentDTO;
-import datamodels.entities.StudentEntity;
 
 @Entity
 @Table(name = "INSTMNT")
 public class InstrumentEntity {
 	
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID") // specify the column name. Without it, it will use method name
 	private Integer id;
@@ -33,7 +34,7 @@ public class InstrumentEntity {
 	@Column(name = "SIZE")
 	private Size size;
 	
-	@Column(name = "STDNT_NAME")
+	@Column(name = "STUDENT")
 	private StudentEntity student;
 
 	public InstrumentEntity(Integer id, String serialNumber, InstrumentType instrumentType, Size size, StudentEntity student) {

@@ -1,6 +1,6 @@
 package datamodels.dto;
 
-import datamodels.general.Person;
+import datamodels.abstracts.Person;
 
 public class StudentDTO extends Person {
 	

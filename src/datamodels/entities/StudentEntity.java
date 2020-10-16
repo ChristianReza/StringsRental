@@ -4,26 +4,28 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
+import datamodels.abstracts.Person;
 import datamodels.dto.StudentDTO;
-import datamodels.general.Person;
 
 @Entity
 @Table(name = "STUDENT")
 public class StudentEntity extends Person {
 
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID") // specify the column name. Without it, it will use method name
 	private Integer id;
 
-	@Column(name = "SCHL_DIST")
+	@Column(name = "SCHOOL")
 	private SchoolEntity schoolDistrict;
 
-	@Column(name = "INST")
+	@Column(name = "INSTMNT")
 	private InstrumentEntity instrument;
 
-	@Column(name = "PARENT_GUARD")
+	@Column(name = "PARNT_GUARD")
 	private ParentGuardianEntity parentGuardian;
 
 	@Column(name = "GRADE_LVL")

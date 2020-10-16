@@ -19,10 +19,10 @@ import util.Info;
 import util.UtilDBReza;
 
 @WebServlet("/createRentalSuit")
-public class RentalSuitHB extends HttpServlet implements Info {
+public class CreateRentalSuitHB extends HttpServlet implements Info {
 	private static final long serialVersionUID = 1L;
 
-	public RentalSuitHB() {
+	public CreateRentalSuitHB() {
 		super();
 	}
 

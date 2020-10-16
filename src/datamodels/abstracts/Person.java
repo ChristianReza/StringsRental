@@ -1,4 +1,4 @@
-package datamodels.general;
+package datamodels.abstracts;
 
 public abstract class Person {
 	

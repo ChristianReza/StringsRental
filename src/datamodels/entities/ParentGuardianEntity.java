@@ -4,15 +4,17 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
+import datamodels.abstracts.Person;
 import datamodels.dto.ParentGuardianDTO;
-import datamodels.general.Person;
 
 @Entity
 @Table(name = "PARNT_GUARD")
 public class ParentGuardianEntity extends Person {
 
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID") // specify the column name. Without it, it will use method name
 	private Integer id;
