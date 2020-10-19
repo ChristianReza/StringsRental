@@ -1,6 +1,6 @@
 # StringsRentalRefactor
 
-###Different database than main branch!
+### Different database than main branch!
 Change entity structure and moved all data into one entity instead of having it split into embedded objects.
 
 ### Page Links
