@@ -5,6 +5,8 @@ http://ec2-18-222-43-76.us-east-2.compute.amazonaws.com:8080/StringsRental/creat
 
 http://ec2-18-222-43-76.us-east-2.compute.amazonaws.com:8080/StringsRental/searchRentalSuitHB.html
 
+http://ec2-18-222-43-76.us-east-2.compute.amazonaws.com:8080/StringsRental/updateRentalSuitHB.html
+
 ### helpful links
 https://www.baeldung.com/jpa-persisting-enums-in-jpa
 
