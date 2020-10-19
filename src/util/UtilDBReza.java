@@ -66,8 +66,7 @@ public class UtilDBReza {
 		try {
 			tx = session.beginTransaction();
 			System.out.println((StudentEntity) session.get(StudentEntity.class, 1)); // use "get" to fetch data
-			// Query q = session.createQuery("FROM Employee");
-			List<?> students = session.createQuery("FROM EmployeeReza").list();
+			List<?> students = session.createQuery("FROM StudentEntity").list();
 			for (Iterator<?> iterator = students.iterator(); iterator.hasNext();) {
 				StudentEntity student = (StudentEntity) iterator.next();
 				if (student.getFirstName().startsWith(keyword)) {

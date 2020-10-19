@@ -64,6 +64,10 @@ public class StudentEntity  {
 
 	@Column(name = "GRADE_LVL")
 	private int gradeLevel;
+	
+	public StudentEntity() {
+		// Default Constructor
+	}
 
 	public StudentEntity(String firstName, String lastName) {
 		this.firstName = firstName;
