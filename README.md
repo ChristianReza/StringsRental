@@ -1,4 +1,7 @@
-# StringsRental
+# StringsRentalRefactor
+
+###Different database than main branch!
+Change entity structure and moved all data into one entity instead of having it split into embedded objects.
 
 ### Page Links
 http://ec2-18-222-43-76.us-east-2.compute.amazonaws.com:8080/StringsRental/createRentalSuitHB.html
