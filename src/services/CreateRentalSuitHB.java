@@ -16,7 +16,7 @@ import datamodels.enums.Size;
 import util.Info;
 import util.UtilDBReza;
 
-@WebServlet("/createRentalSuit")
+@WebServlet("/CreateRentalSuit")
 public class CreateRentalSuitHB extends HttpServlet implements Info {
 	private static final long serialVersionUID = 1L;
 

@@ -14,7 +14,7 @@ import datamodels.entities.StudentEntity;
 import util.Info;
 import util.UtilDBReza;
 
-@WebServlet("/SimpleSearchHB")
+@WebServlet("/SearchRentalSuitHB")
 public class SearchRentalSuitHB extends HttpServlet implements Info {
    private static final long serialVersionUID = 1L;
 
