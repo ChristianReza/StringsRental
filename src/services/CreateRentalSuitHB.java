@@ -44,7 +44,7 @@ public class CreateRentalSuitHB extends HttpServlet implements Info {
 		String schoolPhone = request.getParameter("schoolPhone");
 
 		// Create StudentDTO from endpoint request
-		StudentDTO student = new StudentDTO(firstName, lastName, Schools.valueOf(schoolName), schoolPhone, schoolAddress, "TBA",
+		StudentDTO student = new StudentDTO(firstName, lastName, Schools.valueOf(schoolName), schoolPhone, schoolAddress, "TBD",
 				InstrumentType.valueOf(instrumentType), Size.valueOf(instrumentSize), parentGuardianCC,
 				parentGuardianPhone, parentGuardianAddress, parentGuardianEmail, Integer.valueOf(gradeLevel));
 

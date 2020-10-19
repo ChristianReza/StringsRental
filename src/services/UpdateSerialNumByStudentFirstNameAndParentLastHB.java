@@ -14,16 +14,18 @@ import datamodels.entities.StudentEntity;
 import util.Info;
 import util.UtilDBReza;
 
-@WebServlet("/FindByInstrumentSerialNum")
-public class FindByInstrumentSerialNumHB extends HttpServlet implements Info {
+@WebServlet("/UpdateSerialNumByStudentFirstNameAndParentLast")
+public class UpdateSerialNumByStudentFirstNameAndParentLastHB extends HttpServlet implements Info {
    private static final long serialVersionUID = 1L;
 
-   public FindByInstrumentSerialNumHB() {
+   public UpdateSerialNumByStudentFirstNameAndParentLastHB() {
       super();
    }
 
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      String keyword = request.getParameter("keyword").trim();
+      String studentFirst = request.getParameter("studentName").trim();
+      String oldSerialNumber = request.getParameter("oldSerialNumber").trim();
+      String newSerialNumber = request.getParameter("newSerialNumber").trim();
 
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
@@ -37,8 +39,8 @@ public class FindByInstrumentSerialNumHB extends HttpServlet implements Info {
       out.println("<ul>");
 
       List<StudentEntity> listStudents = null;
-      if (keyword != null && !keyword.isEmpty()) {
-         listStudents = UtilDBReza.FindByInstrumentSerialNum(keyword);
+      if (studentFirst != null && !studentFirst.isEmpty()) {
+         listStudents = UtilDBReza.UpdateSerialNumByStudentFirstNameAndParentLast(studentFirst, oldSerialNumber, newSerialNumber);
       } else {
          listStudents = UtilDBReza.listStudents();
       }

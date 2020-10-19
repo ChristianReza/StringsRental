@@ -83,7 +83,7 @@ public class UtilDBReza {
 		return resultList;
 	}
 	
-	public static List<StudentEntity> FindByInstrumentSerialNumHB(String keyword) {
+	public static List<StudentEntity> FindByInstrumentSerialNum(String keyword) {
 		List<StudentEntity> resultList = new ArrayList<StudentEntity>();
 
 		Session session = getSessionFactory().openSession();
@@ -108,7 +108,36 @@ public class UtilDBReza {
 		}
 		return resultList;
 	}
+	
+	public static List<StudentEntity> UpdateSerialNumByStudentFirstNameAndParentLast(
+			String studentFirstName, String oldSerialNumber, String newSerialNumber) {
+		List<StudentEntity> resultList = new ArrayList<StudentEntity>();
 
+		Session session = getSessionFactory().openSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.beginTransaction();
+			List<?> students = session.createQuery("FROM StudentEntity").list();
+			for (Iterator<?> iterator = students.iterator(); iterator.hasNext();) {
+				StudentEntity student = (StudentEntity) iterator.next();
+				if (student.getInstrumentSerialNumber().equals(oldSerialNumber) 
+						&& student.getFirstName().equals(studentFirstName)) {
+					student.setInstrumentSerialNumber(newSerialNumber);
+					resultList.add(student);
+				}
+			}
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return resultList;
+	}
+	
 	public static void createStudent(StudentDTO student) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = null;
