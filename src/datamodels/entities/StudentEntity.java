@@ -15,16 +15,16 @@ import datamodels.enums.Size;
 
 @Entity
 @Table(name = "STUDENT")
-public class StudentEntity  {
+public class StudentEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID") // specify the column name. Without it, it will use method name
 	private Integer id;
-	
+
 	@Column(name = "STUDENT_FIRST_NAME")
 	private String firstName;
-	
+
 	@Column(name = "STUDENT_LAST_NAME")
 	private String lastName;
 
@@ -64,7 +64,7 @@ public class StudentEntity  {
 
 	@Column(name = "GRADE_LVL")
 	private int gradeLevel;
-	
+
 	public StudentEntity() {
 		// Default Constructor
 	}
@@ -94,9 +94,10 @@ public class StudentEntity  {
 		this.gradeLevel = gradeLevel;
 	}
 
-	public StudentEntity(String firstName, String lastName, Schools schoolName, String schoolPhone, String schoolAddress,
-			String instrumentSerialNumber, InstrumentType instrumentType, Size instrumentSize, String parentGuardianCC,
-			String parentGuardianPhone, String parentGuardianAddress, String parentGuardianEmail, int gradeLevel) {
+	public StudentEntity(String firstName, String lastName, Schools schoolName, String schoolPhone,
+			String schoolAddress, String instrumentSerialNumber, InstrumentType instrumentType, Size instrumentSize,
+			String parentGuardianCC, String parentGuardianPhone, String parentGuardianAddress,
+			String parentGuardianEmail, int gradeLevel) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.schoolName = schoolName;
@@ -119,7 +120,7 @@ public class StudentEntity  {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -226,10 +227,10 @@ public class StudentEntity  {
 
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", " + "First Name=" + firstName + ", Last Name=" + lastName + ", Grade Level=" + gradeLevel + ", School Name="
-				+ schoolName + ", School Phone=" + schoolPhone + ", School Address=" + schoolAddress
-				+ ", Instrument Serial Number=" + instrumentSerialNumber + ", Instrument Type=" + instrumentType
-				+ ", Instrument Size=" + instrumentSize + ", Parent Guardian CC=" + parentGuardianCC
+		return "Student [id=" + id + ", " + "First Name=" + firstName + ", Last Name=" + lastName + ", Grade Level="
+				+ gradeLevel + ", School Name=" + schoolName + ", School Phone=" + schoolPhone + ", School Address="
+				+ schoolAddress + ", Instrument Serial Number=" + instrumentSerialNumber + ", Instrument Type="
+				+ instrumentType + ", Instrument Size=" + instrumentSize + ", Parent Guardian CC=" + parentGuardianCC
 				+ ", Parent Guardian Phone=" + parentGuardianPhone + ", Parent Guardian Address="
 				+ parentGuardianAddress + ", Parent Guardian Email=" + parentGuardianEmail + "]";
 	}
@@ -328,5 +329,4 @@ public class StudentEntity  {
 		return true;
 	}
 
-	
 }

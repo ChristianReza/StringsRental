@@ -14,11 +14,11 @@ import datamodels.entities.StudentEntity;
 import util.Info;
 import util.UtilDBReza;
 
-@WebServlet("/SearchRentalSuitHB")
-public class SearchRentalSuitHB extends HttpServlet implements Info {
+@WebServlet("/FindByInstrumentSerialNum")
+public class FindByInstrumentSerialNumHB extends HttpServlet implements Info {
    private static final long serialVersionUID = 1L;
 
-   public SearchRentalSuitHB() {
+   public FindByInstrumentSerialNumHB() {
       super();
    }
 
@@ -38,7 +38,7 @@ public class SearchRentalSuitHB extends HttpServlet implements Info {
 
       List<StudentEntity> listStudents = null;
       if (keyword != null && !keyword.isEmpty()) {
-         listStudents = UtilDBReza.listStudents(keyword);
+         listStudents = UtilDBReza.FindByInstrumentSerialNumHB(keyword);
       } else {
          listStudents = UtilDBReza.listStudents();
       }
@@ -55,10 +55,7 @@ public class SearchRentalSuitHB extends HttpServlet implements Info {
                + student.getLastName() + ", " //
                + student.getGradeLevel());
 
-         out.println("<li>" + student.getId() + ", " //
-               + student.getFirstName() + ", " //
-               + student.getLastName() + ", " //
-               + student.getGradeLevel() + "</li>");
+         out.println("<li>" + student.toString() + "</li>");
       }
    }
 

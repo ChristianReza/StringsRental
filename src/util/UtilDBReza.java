@@ -57,7 +57,7 @@ public class UtilDBReza {
 		return resultList;
 	}
 
-	public static List<StudentEntity> listStudents(String keyword) {
+	public static List<StudentEntity> findByFirstName(String keyword) {
 		List<StudentEntity> resultList = new ArrayList<StudentEntity>();
 
 		Session session = getSessionFactory().openSession();
@@ -65,11 +65,36 @@ public class UtilDBReza {
 
 		try {
 			tx = session.beginTransaction();
-			System.out.println((StudentEntity) session.get(StudentEntity.class, 1)); // use "get" to fetch data
 			List<?> students = session.createQuery("FROM StudentEntity").list();
 			for (Iterator<?> iterator = students.iterator(); iterator.hasNext();) {
 				StudentEntity student = (StudentEntity) iterator.next();
 				if (student.getFirstName().startsWith(keyword)) {
+					resultList.add(student);
+				}
+			}
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return resultList;
+	}
+	
+	public static List<StudentEntity> FindByInstrumentSerialNumHB(String keyword) {
+		List<StudentEntity> resultList = new ArrayList<StudentEntity>();
+
+		Session session = getSessionFactory().openSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.beginTransaction();
+			List<?> students = session.createQuery("FROM StudentEntity").list();
+			for (Iterator<?> iterator = students.iterator(); iterator.hasNext();) {
+				StudentEntity student = (StudentEntity) iterator.next();
+				if (student.getInstrumentSerialNumber().equals(keyword)) {
 					resultList.add(student);
 				}
 			}

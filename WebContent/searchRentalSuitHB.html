@@ -40,17 +40,27 @@ footer {
 </nav>
 
 <section>
-	<h1>Query</h1>
+	<h1>Queries</h1>
 	
-	<form action="SearchRentalSuitHB" method="POST">
-	
+	<form action="FindByFirstName" method="POST">
 		<fieldset>
 			<legend>Query Student Name:</legend>
 			Student First Name:
 			<input type="text" name="keyword"> <br />
 		</fieldset>
 		<br />
+		<input type="submit" value="Search" />
+	</form>
 	
+	
+	
+	<form action="FindByInstrumentSerialNum" method="POST">
+		<fieldset>
+			<legend>Query Instrument Serial Number:</legend>
+			Serial Number:
+			<input type="text" name="keyword"> <br />
+		</fieldset>
+		<br />
 		<input type="submit" value="Search" />
 	</form>
 
