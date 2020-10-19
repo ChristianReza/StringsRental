@@ -13,15 +13,8 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-import datamodels.dto.InstrumentDTO;
-import datamodels.dto.ParentGuardianDTO;
-import datamodels.dto.SchoolDTO;
-import datamodels.entities.InstrumentEntity;
-import datamodels.entities.ParentGuardianEntity;
-import datamodels.entities.SchoolEntity;
+import datamodels.dto.StudentDTO;
 import datamodels.entities.StudentEntity;
-import datamodels.enums.InstrumentType;
-import datamodels.enums.Size;
 
 /**
  * @since JavaSE-1.8
@@ -92,22 +85,27 @@ public class UtilDBReza {
 		return resultList;
 	}
 
-	public static void createStudent(String firstName, String lastName, SchoolDTO schoolDistrict,
-			InstrumentDTO instrument, ParentGuardianDTO parentGuardian, int gradeLevel) {
+	public static void createStudent(StudentDTO student) {
 		Session session = getSessionFactory().openSession();
 		Transaction tx = null;
-		createInstrument(instrument);
-		createParentGuardian(parentGuardian);
 		try {
 			tx = session.beginTransaction();
 			session.save(
 					new StudentEntity(
-							firstName,
-							lastName,
-							new SchoolEntity(schoolDistrict),
-							new InstrumentEntity(instrument),
-							new ParentGuardianEntity(parentGuardian),
-							gradeLevel));
+							student.getFirstName(),
+							student.getLastName(),
+							student.getSchoolName(),
+							student.getSchoolPhone(),
+							student.getSchoolAddress(),
+							student.getInstrumentSerialNumber(),
+							student.getInstrumentType(),
+							student.getInstrumentSize(),
+							student.getParentGuardianCC(),
+							student.getParentGuardianPhone(),
+							student.getParentGuardianAddress(),
+							student.getParentGuardianEmail(),
+							student.getGradeLevel()
+							));
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
@@ -118,112 +116,4 @@ public class UtilDBReza {
 		}
 	}
 
-	public static void createParentGuardian(String firstName, String lastName, String cc, String phoneNumber,
-			String address, String email) {
-		Session session = getSessionFactory().openSession();
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			session.save(new ParentGuardianEntity(firstName, lastName, cc, phoneNumber, address, email));
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-	}
-
-	public static void createParentGuardian(ParentGuardianDTO parentGuardian) {
-		Session session = getSessionFactory().openSession();
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			session.save(new ParentGuardianEntity(parentGuardian.getFirstName(), parentGuardian.getLastName(),
-					parentGuardian.getCc(), parentGuardian.getPhoneNumber(), parentGuardian.getAddress(),
-					parentGuardian.getEmail()));
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-	}
-
-	public static void createInstrument(String serialNumber, InstrumentType instrumentType, Size size,
-			StudentEntity student) {
-		Session session = getSessionFactory().openSession();
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			session.save(new InstrumentEntity(serialNumber, instrumentType, size, student));
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-	}
-
-	public static void createInstrument(InstrumentDTO instrument) {
-		Session session = getSessionFactory().openSession();
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			session.save(new InstrumentEntity(
-					instrument.getSerialNumber(),
-					instrument.getInstrumentType(),
-					instrument.getSize(),
-					new StudentEntity(instrument.getStudent()))
-					);
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-	}
-
-	public static void createSchool(String name, String phoneNumber, String address) {
-		Session session = getSessionFactory().openSession();
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			session.save(new SchoolEntity(name, phoneNumber, address));
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-	}
-	
-	public static void createSchool(SchoolDTO school) {
-		Session session = getSessionFactory().openSession();
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			session.save(new SchoolEntity(
-					school.getname(),
-					school.getPhoneNumber(),
-					school.getAddress())
-					);
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-	}
 }

@@ -9,11 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datamodels.dto.InstrumentDTO;
-import datamodels.dto.ParentGuardianDTO;
-import datamodels.dto.SchoolDTO;
 import datamodels.dto.StudentDTO;
 import datamodels.enums.InstrumentType;
+import datamodels.enums.Schools;
 import datamodels.enums.Size;
 import util.Info;
 import util.UtilDBReza;
@@ -41,25 +39,16 @@ public class CreateRentalSuitHB extends HttpServlet implements Info {
 		String parentGuardianEmail = request.getParameter("parentGuardianEmail");
 		String parentGuardianCC = request.getParameter("parentGuardianCC");
 
-		// Create ParentGuardianDTO from endpoint request
-		ParentGuardianDTO parentGuardian = new ParentGuardianDTO(parentGuardianFirstName, parentGuardianLastName,
-				parentGuardianCC, parentGuardianPhone, parentGuardianAddress, parentGuardianEmail);
-
 		String schoolName = request.getParameter("schoolName");
 		String schoolAddress = request.getParameter("schoolAddress");
 		String schoolPhone = request.getParameter("schoolPhone");
 
-		// Create SchoolDTO from endpoint request
-		SchoolDTO school = new SchoolDTO(schoolName, schoolPhone, schoolAddress);
-
 		// Create StudentDTO from endpoint request
-		StudentDTO student = new StudentDTO(firstName, lastName, school, new InstrumentDTO(), parentGuardian,
-				Integer.valueOf(gradeLevel));
-		// Create InstrumentDTO from endpoint request
-		InstrumentDTO instrument = new InstrumentDTO("TBA", InstrumentType.valueOf(instrumentType),
-				Size.valueOf(instrumentSize), student);
+		StudentDTO student = new StudentDTO(firstName, lastName, Schools.valueOf(schoolName), schoolPhone, schoolAddress, "TBA",
+				InstrumentType.valueOf(instrumentType), Size.valueOf(instrumentSize), parentGuardianCC,
+				parentGuardianPhone, parentGuardianAddress, parentGuardianEmail, Integer.valueOf(gradeLevel));
 
-		UtilDBReza.createStudent(firstName, lastName, school, instrument, parentGuardian, Integer.valueOf(gradeLevel));
+		UtilDBReza.createStudent(student);
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
