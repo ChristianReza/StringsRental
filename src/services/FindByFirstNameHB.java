@@ -37,7 +37,7 @@ public class FindByFirstNameHB extends HttpServlet implements Info {
       out.println("<ul>");
 
       List<StudentEntity> listStudents = null;
-      if (keyword != null && !keyword.isEmpty()) {
+      if (keyword != null && !keyword.isEmpty() && !keyword.equals("Search")) { // if keyword is "Search", then findAll
          listStudents = UtilDBReza.findByFirstName(keyword);
       } else {
          listStudents = UtilDBReza.listStudents();
