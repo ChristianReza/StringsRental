@@ -15,6 +15,8 @@ import org.hibernate.cfg.Configuration;
 
 import datamodels.dto.StudentDTO;
 import datamodels.entities.StudentEntity;
+import datamodels.enums.InstrumentType;
+import datamodels.enums.Schools;
 
 /**
  * @since JavaSE-1.8
@@ -95,6 +97,59 @@ public class UtilDBReza {
 			for (Iterator<?> iterator = students.iterator(); iterator.hasNext();) {
 				StudentEntity student = (StudentEntity) iterator.next();
 				if (student.getInstrumentSerialNumber().equals(keyword)) {
+					resultList.add(student);
+				}
+			}
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return resultList;
+	}
+	
+	public static List<StudentEntity> FindByInstrumentType(String keyword) {
+		List<StudentEntity> resultList = new ArrayList<StudentEntity>();
+
+		Session session = getSessionFactory().openSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.beginTransaction();
+			List<?> students = session.createQuery("FROM StudentEntity").list();
+			for (Iterator<?> iterator = students.iterator(); iterator.hasNext();) {
+				StudentEntity student = (StudentEntity) iterator.next();
+				if (student.getInstrumentType().equals(InstrumentType.valueOf(keyword))) {
+					resultList.add(student);
+				}
+			}
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return resultList;
+	}
+	
+	public static List<StudentEntity> FindBySchoolAndInstrumentType(String instType, String school) {
+		List<StudentEntity> resultList = new ArrayList<StudentEntity>();
+
+		Session session = getSessionFactory().openSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.beginTransaction();
+			List<?> students = session.createQuery("FROM StudentEntity").list();
+			for (Iterator<?> iterator = students.iterator(); iterator.hasNext();) {
+				StudentEntity student = (StudentEntity) iterator.next();
+				if (student.getInstrumentType().equals(InstrumentType.valueOf(instType))
+						&& student.getSchoolName().equals(Schools.valueOf(school))) {
 					resultList.add(student);
 				}
 			}
