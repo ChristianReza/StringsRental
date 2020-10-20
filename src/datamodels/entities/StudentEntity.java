@@ -49,6 +49,12 @@ public class StudentEntity {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "INSTMNT_SIZE")
 	private Size instrumentSize;
+	
+	@Column(name = "PARNT_GUARD_FN")
+	private String parentGuardianFirstName;
+	
+	@Column(name = "PARNT_GUARD_LN")
+	private String parentGuardianLastName;
 
 	@Column(name = "PARNT_GUARD_CC")
 	private String parentGuardianCC;
@@ -74,19 +80,22 @@ public class StudentEntity {
 		this.lastName = lastName;
 	}
 
-	public StudentEntity(String firstName, String lastName, Integer id, Schools schoolName, String schoolPhone,
+	public StudentEntity(Integer id, String firstName, String lastName, Schools schoolName, String schoolPhone,
 			String schoolAddress, String instrumentSerialNumber, InstrumentType instrumentType, Size instrumentSize,
-			String parentGuardianCC, String parentGuardianPhone, String parentGuardianAddress,
-			String parentGuardianEmail, int gradeLevel) {
+			String parentGuardianFirstName, String parentGuardianLastName, String parentGuardianCC,
+			String parentGuardianPhone, String parentGuardianAddress, String parentGuardianEmail, int gradeLevel) {
+		super();
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.id = id;
 		this.schoolName = schoolName;
 		this.schoolPhone = schoolPhone;
 		this.schoolAddress = schoolAddress;
 		this.instrumentSerialNumber = instrumentSerialNumber;
 		this.instrumentType = instrumentType;
 		this.instrumentSize = instrumentSize;
+		this.parentGuardianFirstName = parentGuardianFirstName;
+		this.parentGuardianLastName = parentGuardianLastName;
 		this.parentGuardianCC = parentGuardianCC;
 		this.parentGuardianPhone = parentGuardianPhone;
 		this.parentGuardianAddress = parentGuardianAddress;
@@ -96,8 +105,9 @@ public class StudentEntity {
 
 	public StudentEntity(String firstName, String lastName, Schools schoolName, String schoolPhone,
 			String schoolAddress, String instrumentSerialNumber, InstrumentType instrumentType, Size instrumentSize,
-			String parentGuardianCC, String parentGuardianPhone, String parentGuardianAddress,
-			String parentGuardianEmail, int gradeLevel) {
+			String parentGuardianFirstName, String parentGuardianLastName, String parentGuardianCC,
+			String parentGuardianPhone, String parentGuardianAddress, String parentGuardianEmail, int gradeLevel) {
+		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.schoolName = schoolName;
@@ -106,6 +116,8 @@ public class StudentEntity {
 		this.instrumentSerialNumber = instrumentSerialNumber;
 		this.instrumentType = instrumentType;
 		this.instrumentSize = instrumentSize;
+		this.parentGuardianFirstName = parentGuardianFirstName;
+		this.parentGuardianLastName = parentGuardianLastName;
 		this.parentGuardianCC = parentGuardianCC;
 		this.parentGuardianPhone = parentGuardianPhone;
 		this.parentGuardianAddress = parentGuardianAddress;
@@ -185,6 +197,22 @@ public class StudentEntity {
 		this.instrumentSize = instrumentSize;
 	}
 
+	public String getParentGuardianFirstName() {
+		return parentGuardianFirstName;
+	}
+
+	public void setParentGuardianFirstName(String parentGuardianFirstName) {
+		this.parentGuardianFirstName = parentGuardianFirstName;
+	}
+
+	public String getParentGuardianLastName() {
+		return parentGuardianLastName;
+	}
+
+	public void setParentGuardianLastName(String parentGuardianLastName) {
+		this.parentGuardianLastName = parentGuardianLastName;
+	}
+
 	public String getParentGuardianCC() {
 		return parentGuardianCC;
 	}
@@ -227,12 +255,13 @@ public class StudentEntity {
 
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", " + "First Name=" + firstName + ", Last Name=" + lastName + ", Grade Level="
-				+ gradeLevel + ", School Name=" + schoolName + ", School Phone=" + schoolPhone + ", School Address="
-				+ schoolAddress + ", Instrument Serial Number=" + instrumentSerialNumber + ", Instrument Type="
-				+ instrumentType + ", Instrument Size=" + instrumentSize + ", Parent Guardian CC=" + parentGuardianCC
-				+ ", Parent Guardian Phone=" + parentGuardianPhone + ", Parent Guardian Address="
-				+ parentGuardianAddress + ", Parent Guardian Email=" + parentGuardianEmail + "]";
+		return "StudentEntity [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", schoolName="
+				+ schoolName + ", schoolPhone=" + schoolPhone + ", schoolAddress=" + schoolAddress
+				+ ", instrumentSerialNumber=" + instrumentSerialNumber + ", instrumentType=" + instrumentType
+				+ ", instrumentSize=" + instrumentSize + ", parentGuardianFirstName=" + parentGuardianFirstName
+				+ ", parentGuardianLastName=" + parentGuardianLastName + ", parentGuardianCC=" + parentGuardianCC
+				+ ", parentGuardianPhone=" + parentGuardianPhone + ", parentGuardianAddress=" + parentGuardianAddress
+				+ ", parentGuardianEmail=" + parentGuardianEmail + ", gradeLevel=" + gradeLevel + "]";
 	}
 
 	@Override
@@ -249,6 +278,8 @@ public class StudentEntity {
 		result = prime * result + ((parentGuardianAddress == null) ? 0 : parentGuardianAddress.hashCode());
 		result = prime * result + ((parentGuardianCC == null) ? 0 : parentGuardianCC.hashCode());
 		result = prime * result + ((parentGuardianEmail == null) ? 0 : parentGuardianEmail.hashCode());
+		result = prime * result + ((parentGuardianFirstName == null) ? 0 : parentGuardianFirstName.hashCode());
+		result = prime * result + ((parentGuardianLastName == null) ? 0 : parentGuardianLastName.hashCode());
 		result = prime * result + ((parentGuardianPhone == null) ? 0 : parentGuardianPhone.hashCode());
 		result = prime * result + ((schoolAddress == null) ? 0 : schoolAddress.hashCode());
 		result = prime * result + ((schoolName == null) ? 0 : schoolName.hashCode());
@@ -306,6 +337,16 @@ public class StudentEntity {
 				return false;
 		} else if (!parentGuardianEmail.equals(other.parentGuardianEmail))
 			return false;
+		if (parentGuardianFirstName == null) {
+			if (other.parentGuardianFirstName != null)
+				return false;
+		} else if (!parentGuardianFirstName.equals(other.parentGuardianFirstName))
+			return false;
+		if (parentGuardianLastName == null) {
+			if (other.parentGuardianLastName != null)
+				return false;
+		} else if (!parentGuardianLastName.equals(other.parentGuardianLastName))
+			return false;
 		if (parentGuardianPhone == null) {
 			if (other.parentGuardianPhone != null)
 				return false;
@@ -316,10 +357,7 @@ public class StudentEntity {
 				return false;
 		} else if (!schoolAddress.equals(other.schoolAddress))
 			return false;
-		if (schoolName == null) {
-			if (other.schoolName != null)
-				return false;
-		} else if (!schoolName.equals(other.schoolName))
+		if (schoolName != other.schoolName)
 			return false;
 		if (schoolPhone == null) {
 			if (other.schoolPhone != null)
@@ -328,5 +366,7 @@ public class StudentEntity {
 			return false;
 		return true;
 	}
+
+
 
 }

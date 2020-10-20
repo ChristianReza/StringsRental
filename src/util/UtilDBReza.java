@@ -85,6 +85,32 @@ public class UtilDBReza {
 		return resultList;
 	}
 	
+	public static List<StudentEntity> findByLastName(String keyword) {
+		List<StudentEntity> resultList = new ArrayList<StudentEntity>();
+
+		Session session = getSessionFactory().openSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.beginTransaction();
+			List<?> students = session.createQuery("FROM StudentEntity").list();
+			for (Iterator<?> iterator = students.iterator(); iterator.hasNext();) {
+				StudentEntity student = (StudentEntity) iterator.next();
+				if (student.getLastName().startsWith(keyword)) {
+					resultList.add(student);
+				}
+			}
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return resultList;
+	}
+	
 	public static List<StudentEntity> FindByInstrumentSerialNum(String keyword) {
 		List<StudentEntity> resultList = new ArrayList<StudentEntity>();
 
@@ -208,6 +234,8 @@ public class UtilDBReza {
 							student.getInstrumentSerialNumber(),
 							student.getInstrumentType(),
 							student.getInstrumentSize(),
+							student.getParentGuardianFirstName(),
+							student.getParentGuardianLastName(),
 							student.getParentGuardianCC(),
 							student.getParentGuardianPhone(),
 							student.getParentGuardianAddress(),

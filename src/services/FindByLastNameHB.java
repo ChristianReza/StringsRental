@@ -14,11 +14,11 @@ import datamodels.entities.StudentEntity;
 import util.Info;
 import util.UtilDBReza;
 
-@WebServlet("/FindByFirstName")
-public class FindByFirstNameHB extends HttpServlet implements Info {
+@WebServlet("/FindByLastName")
+public class FindByLastNameHB extends HttpServlet implements Info {
    private static final long serialVersionUID = 1L;
 
-   public FindByFirstNameHB() {
+   public FindByLastNameHB() {
       super();
    }
 
@@ -40,8 +40,8 @@ public class FindByFirstNameHB extends HttpServlet implements Info {
       out.println("<ul>");
 
       List<StudentEntity> listStudents = null;
-      if (keyword != null && !keyword.isEmpty() && !keyword.equals("Search")) { // if keyword is "Search", then findAll
-         listStudents = UtilDBReza.findByFirstName(keyword);
+      if (keyword != null && !keyword.isEmpty()) { // if keyword is "Search", then findAll
+         listStudents = UtilDBReza.findByLastName(keyword);
       } else {
          listStudents = UtilDBReza.listStudents();
       }

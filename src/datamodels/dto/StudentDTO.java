@@ -21,6 +21,10 @@ public class StudentDTO {
 	private InstrumentType instrumentType;
 
 	private Size instrumentSize;
+	
+	private String parentGuardianFirstName;
+	
+	private String parentGuardianLastName;
 
 	private String parentGuardianCC;
 
@@ -37,10 +41,12 @@ public class StudentDTO {
 		this.lastName = lastName;
 	}
 
-	public StudentDTO(String firstName, String lastName, Integer id, Schools schoolName, String schoolPhone,
-			String schoolAddress, String instrumentSerialNumber, InstrumentType instrumentType, Size instrumentSize,
-			String parentGuardianCC, String parentGuardianPhone, String parentGuardianAddress,
-			String parentGuardianEmail, int gradeLevel) {
+	
+	public StudentDTO(String firstName, String lastName, Schools schoolName, String schoolPhone, String schoolAddress,
+			String instrumentSerialNumber, InstrumentType instrumentType, Size instrumentSize,
+			String parentGuardianFirstName, String parentGuardianLastName, String parentGuardianCC,
+			String parentGuardianPhone, String parentGuardianAddress, String parentGuardianEmail, int gradeLevel) {
+		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.schoolName = schoolName;
@@ -49,6 +55,8 @@ public class StudentDTO {
 		this.instrumentSerialNumber = instrumentSerialNumber;
 		this.instrumentType = instrumentType;
 		this.instrumentSize = instrumentSize;
+		this.parentGuardianFirstName = parentGuardianFirstName;
+		this.parentGuardianLastName = parentGuardianLastName;
 		this.parentGuardianCC = parentGuardianCC;
 		this.parentGuardianPhone = parentGuardianPhone;
 		this.parentGuardianAddress = parentGuardianAddress;
@@ -56,24 +64,7 @@ public class StudentDTO {
 		this.gradeLevel = gradeLevel;
 	}
 
-	public StudentDTO(String firstName, String lastName, Schools schoolName, String schoolPhone, String schoolAddress,
-			String instrumentSerialNumber, InstrumentType instrumentType, Size instrumentSize, String parentGuardianCC,
-			String parentGuardianPhone, String parentGuardianAddress, String parentGuardianEmail, int gradeLevel) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.schoolName = schoolName;
-		this.schoolPhone = schoolPhone;
-		this.schoolAddress = schoolAddress;
-		this.instrumentSerialNumber = instrumentSerialNumber;
-		this.instrumentType = instrumentType;
-		this.instrumentSize = instrumentSize;
-		this.parentGuardianCC = parentGuardianCC;
-		this.parentGuardianPhone = parentGuardianPhone;
-		this.parentGuardianAddress = parentGuardianAddress;
-		this.parentGuardianEmail = parentGuardianEmail;
-		this.gradeLevel = gradeLevel;
-	}
-	
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -134,8 +125,26 @@ public class StudentDTO {
 		return instrumentSize;
 	}
 
+	public String getParentGuardianFirstName() {
+		return parentGuardianFirstName;
+	}
+
+
+	public void setParentGuardianFirstName(String parentGuardianFirstName) {
+		this.parentGuardianFirstName = parentGuardianFirstName;
+	}
+
+
 	public void setInstrumentSize(Size instrumentSize) {
 		this.instrumentSize = instrumentSize;
+	}
+
+	public String getParentGuardianLastName() {
+		return parentGuardianLastName;
+	}
+
+	public void setParentGuardianLastName(String parentGuardianLastName) {
+		this.parentGuardianLastName = parentGuardianLastName;
 	}
 
 	public String getParentGuardianCC() {
